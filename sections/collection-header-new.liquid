@@ -1,0 +1,120 @@
+{%- if collection.image or collection.description != blank -%}
+<div class="container">
+	<div class="page-about mt-40">
+      <div class="about-introduction row mx-0">
+        
+        <div class="col-lg-6 col-md-6 order-md-last px-0">
+          <div class="about-background" style="background-image:url({{collection.image | img_url: 'master'}});" ></div>
+        </div>
+        
+        <div class="col-lg-6 col-md-6 col-md-8" style="background-color:#fff">
+          <div class="collection-content-wrapper">
+            <h2 class="about-heading text-left">{{collection.title | escape}}</h2>
+            <div class="about-subheading text-left">{{collection.description | truncate: 350 }}</div>
+          </div>
+        </div>
+      </div>
+	</div>
+</div>
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "Collection Header",
+    "settings": []
+  }
+{% endschema %}
+
+<style>
+  
+.collection-content-wrapper {
+    padding: 60px;
+}
+ 
+.collection-image img {
+	float:right !important;
+    max-width: 100%;
+  	max-height: auto;
+  	display: block;
+}
+  
+h3.col-head {
+    position: relative;
+    font-size: 42px
+}
+
+.col-head:after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    right: 0;
+    bottom: 230px;
+    margin: -5px 0;
+    width: 30px;
+    height: 2px;
+    background: #000
+}
+  
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+.col-lg-6-custom {
+    max-width: 100% !important;
+	}
+}
+  
+@media only screen and (min-width: 1281px) and (max-width: 1980px) {
+.collection-header {
+    max-height: 445px;
+    width: 100%;
+  	overflow: hidden;
+	}
+}
+  
+@media only screen and (min-width: 320px) and (max-width: 1280px) {
+.collection-header {
+    width: 100%;
+  	overflow: hidden;
+	}
+}
+  
+@media only screen and (min-width: 1280px) and (max-width: 1980px) {
+.col-title {
+	margin: 150px 0px;
+  	height:50%;
+	}
+}
+  
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+.col-title {
+	margin: 115px 0px;
+	}
+}
+  
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+.col-title {
+	margin: 115px 0px;
+	}
+}
+  
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+.col-title {
+	margin: 115px 0px;
+	}
+}
+  
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+.col-title {
+	margin: 40px 0px;
+	}
+}
+@media only screen and (min-width: 320px) and (max-width: 1023px) {
+  .collection-content-wrapper {
+    padding: 30px;
+	}
+}
+  
+  
+</style>
+
+{% javascript %}
+{% endjavascript %}

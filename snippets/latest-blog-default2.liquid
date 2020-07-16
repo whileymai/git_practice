@@ -1,0 +1,91 @@
+<div class="box blog-module box-no-advanced{%- if _lblog_mobile == false -%}{{' '}}hidden-xs hidden-sm{%- endif -%}" data-order="{{_lblog_order}}"{{' '}}{%-if section.settings.bg_color != blank-%}style="margin-top:0;"{%-endif-%}>
+  <div class="box-heading">{{_lblog_heading}}</div>
+  <div class="strip-line"></div>
+  <div class="news v2 default2 row blog-slick-slider">
+    {%- if _lblog_blog != blank-%}
+      {%- for _article in _lblog_blog.articles -%}
+      {%- if forloop.index > _lblog_limit -%}
+      {%- break -%}
+      {%- endif -%}
+      <div class="col-sm-4 col-xs-12">
+        <div class="media">
+          <div class="thumb-holder">
+            <img alt="{{_article.title}}" src="{{_article.image.src | img_url: '350x300', crop: 'top'}}" />
+          </div>
+          <div class="media-body"  onclick="window.location.href = '{{_article.url}}'">
+            {%- if _article.tags.size > 0 -%}
+<!--             <div class="tags">
+              {%- for tag in _article.tags limit:2 -%}
+              <a href="/blogs/{{_lblog_blog.handle}}/tagged/{{tag | handle}}">{{tag}}</a>
+              {%- endfor -%}
+            </div> -->
+            {%- endif -%}
+            <div class="bottom">
+              <div class="date-published">
+                <span><span class="author">{{- _article.author -}}</span>{{- "blogs.general.on" | t -}}{{ _article.published_at | date: "%b %d, %y" }}</span>
+              </div>
+              <h5><a href="{{_article.url}}">{{_article.title}}</a></h5>
+              
+              <div class="blog__box">
+                <a href="{{_article.url}}">
+                <div class="evergreen__arrow">
+                  <!--?xml version="1.0" encoding="UTF-8"?-->
+                  <svg height="12px" version="1.1" viewbox="0 0 30 12" width="30px" xmlns="http://www.w3.org/2000/svg">
+                  <g fill="none" fill-rule="evenodd" id="Symbols" stroke="none" stroke-linecap="square" stroke-width="1">
+                    <g id="Link/text/black" stroke="#221E20" transform="translate(-113.000000, -7.000000)">
+                      <g id="Group">
+                        <g id="Arrow-–-Right" transform="translate(114.000000, 8.000000)">
+                          <g id="Group-3-Copy">
+                            <path d="M0.349609375,5 L28.482892,5" id="Line-4"></path>
+                            <path d="M28.8257576,5 L23.9345396,0.16011419" id="Line-5"></path>
+                            <path d="M28.8257576,5 L23.9345396,9.83988581" id="Line-6"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g></svg>
+                </div>
+               </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+      {%- else -%}
+      {%- for i in (1.._lblog_limit) -%}
+      <div class="col-sm-4 col-xs-12">
+        <div class="media">
+          <div class="thumb-holder">
+            <img alt="" src="{{ "noimage_265_350.png" | asset_img_url: '262x343', crop: 'top'}}" />
+          </div>
+          <div class="media-body"  onclick="window.location.href = '{{_article.url}}'">
+            <div class="tags">
+              <a href="#">{{"tag1"}}</a>
+              <a href="#">{{"tag2"}}</a>
+            </div>
+            <div class="bottom">
+              <div class="date-published">
+                <span class="blog-comment"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#global__symbols-comment"></use></svg><span>{{- i -}}</span></span>
+                <span><span class="author">Author</span> on {{ "Feb 24, 2016" | date: "%b %d, %y" }}</span>
+              </div>
+              <h5><a href="#">{{"Article Title"}}</a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .blog__box {
+    background-color: #fff;
+    padding: 1px 20px;
+    width: 100%;
+    margin-top: -5%;
+    position: relative;
+}
+</style>

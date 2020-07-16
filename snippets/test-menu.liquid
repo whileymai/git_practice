@@ -1,0 +1,382 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+
+  <div id="sidebar-panel">
+    <nav class="sidebar-main-nav-evergreen">
+      <Burger>${ message }</Burger>
+    </nav>
+    <Sidebar>
+            
+      <ul class="evergreen-main-nav">
+        
+        {% for link in linklists.main-sidebar.links %}         
+            
+        	{% assign _active = false %}
+            {% if link.active %}
+            {% assign _active = true %}
+            {% endif %}
+        
+           <li class="evergreen-main-nav-item{% if _active %} evergreen-main-nav-active{% endif %}{% if linklists.main-menu-sidebar.links.size > 0 %} evergreen-main-nav-item-has-children{% endif %}">
+
+             <a class="evergreen-menu-link" href="{{ link.url }}">{{ link.title }}</a>
+             
+              {% if linklists.main-sidebar.links.size > 0 %}
+              {% if link.links != blank %} 
+              	<span  class="evergreen-child-menu"></span>
+              {% endif %}
+              {% endif %}
+
+              <div class="evergreen-nav-box">
+              {% if linklists.main-sidebar.links.size > 0 %}
+                <ul id="show-sub-nav" class="evergreen-main-subnav">
+                  {% for child_link in link.links %}
+                  <li class="evergreen-nav__item"><a href="{{ child_link.url }}" class="evergreen-nav__link">{{ child_link.title }}</a></li>
+                  {% endfor %}                
+                </ul>
+                {% endif %}
+             </div>
+            </li>
+          {% endfor %}
+        
+      </ul>
+     
+    </Sidebar>
+  </div>
+  
+  <template id="sidebar">
+      <div class="sidebar">
+          <div class="sidebar-backdrop" v-on:click="closeSidebarPanel" v-if="isPanelOpen"></div>
+          <transition name="slide">
+              <div v-if="isPanelOpen"
+                   class="sidebar-panel">
+                  <slot></slot>
+              </div>
+          </transition>
+      </div>
+  </template>
+
+  <template id="burger">
+      <div id="burger"
+           :class="{ 'active' : isBurgerActive }"
+           @click.prevent="toggle">
+          <slot>
+              <button type="button" class="burger-button" title="Menu">
+                  <span class="hidden">Toggle menu</span>
+                  <span class="burger-bar burger-bar--1"></span>
+                  <span class="burger-bar burger-bar--2"></span>
+                  <span class="burger-bar burger-bar--3"></span>
+              </button>
+          </slot>
+      </div>
+  </template>
+
+
+<style>
+  
+.sidebar-panel {
+  overflow-y: auto;
+  background-color: #eaeaea;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 999;
+  padding: 3rem 20px 2rem 20px;
+  width: 320px;
+}
+
+.sidebar-main-nav-evergreen {
+  float: left;
+  width: auto;
+  margin: 0 36px 0 20px;
+  display: block;
+  position: relative;
+  font-size: 14px;
+  padding: 26px 2px 19px;
+  height: 65px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.2s ease;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-100%);
+  transition: all 150ms ease-in 0s;
+}
+.sidebar-backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.evergreen-main-nav {
+  list-style: none;
+  margin: 0;
+  padding: 25px;
+}
+.evergreen-main-nav .evergreen-main-nav-item {
+  padding: 15px 0;
+  display: block;
+  position: relative;
+  font-weight: 400;
+  font-size: 15px;
+  border-bottom: 0px solid #ddd;
+}
+.evergreen-main-nav .evergreen-main-subnav .evergreen-main-nav-item {
+  font-weight: 300;
+}
+.evergreen-main-nav .evergreen-main-nav-item:last-child {
+  border-bottom: 0;
+}
+.evergreen-main-nav .evergreen-main-nav-item a {
+  color: inherit;
+}
+.evergreen-nav-box {
+    margin: 5px 0;
+}
+.evergreen-main-subnav {
+  padding:0;
+  margin:0;
+  display: none;
+  position:relative;
+  padding: 0;
+  margin: 10px 0;
+  background-color:#eaeaea;
+}
+
+.evergreen-nav__item{
+  list-style:none;
+  width:100%;
+  text-align:left;
+  padding:5px 0 0 0;
+}
+.evergreen-nav__item a{
+  text-decoration:none;
+}
+
+.evergreen-nav__item a:hover{
+  font-weight:900;
+  text-decoration:none;
+}
+
+.evergreen-main-nav-item:hover .evergreen-main-subnav{
+  display:block;
+}
+.evergreen-main-subnav .evergreen-main-nav-item:last-child {
+  padding-bottom: 0;
+}
+
+.evergreen-child-menu {
+  float: right;
+  cursor: pointer;
+}
+.evergreen-child-menu::after {
+  content: "\f078";
+  display: inline-block;
+  font-family: "FontAwesome";
+  font-weight: 400;
+  font-size: 10px;
+  width: 30px;
+  text-align: center;
+}
+.evergreen-main-nav-item-has-children
+  .evergreen-main-nav-active
+  .evergreen-child-menu::after {
+  content: "\f077";
+}
+.evergreen-main-nav-item-has-children
+  .evergreen-main-nav-active
+  .evergreen-main-subnav {
+  display: block;
+}
+
+.evergreen-main-nav-item:hover .evergreen-main-subnav {
+    display: none !important;
+}
+
+.evergreen-main-nav-item.current .evergreen-main-subnav {
+    display: block !important;
+}
+.evergreen-main-nav-item.current>.evergreen-child-menu::after {
+    content: "\f077";
+}
+
+/* burger */
+.hidden {
+  visibility: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+/* remove blue outline */
+
+button:focus {
+  outline: 0;
+}
+.burger-button {
+  position: relative;
+  height: 30px;
+  width: 32px;
+  display: block;
+  z-index: 999;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  pointer-events: all;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.burger-bar {
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  left: 6px;
+  height: 2px;
+  width: auto;
+  margin-top: -1px;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.burger-bar--1 {
+  -webkit-transform: translateY(-6px);
+  transform: translateY(-6px);
+}
+.burger-bar--2 {
+  transform-origin: 100% 50%;
+  transform: scaleX(0.8);
+}
+.burger-button:hover .burger-bar--2 {
+  transform: scaleX(1);
+}
+.no-touchevents .burger-bar--2:hover {
+  transform: scaleX(1);
+}
+.burger-bar--3 {
+  transform: translateY(6px);
+}
+#burger.active .burger-button {
+  transform: rotate(-180deg);
+}
+#burger.active .burger-bar {
+  background-color: #fff;
+}
+#burger.active .burger-bar--1 {
+  transform: rotate(45deg);
+}
+#burger.active .burger-bar--2 {
+  opacity: 0;
+}
+#burger.active .burger-bar--3 {
+  transform: rotate(-45deg);
+}
+
+</style>
+
+
+
+<script>
+//Mutations
+const store = Vue.observable({
+    isNavOpen: false
+});
+
+const mutations = {
+    setIsNavOpen(yesno) {
+        store.isNavOpen = yesno;
+    },
+    toggleNav() {
+      store.isNavOpen = !store.isNavOpen;
+    }
+};
+
+//Components
+  
+  Vue.component('modal', {
+    template: `
+        {% for link in linklists.main-sidebar.links %}         
+            
+        	{% assign _active = false %}
+            {% if link.active %}
+            {% assign _active = true %}
+            {% endif %}
+        
+           <li class="evergreen-main-nav-item{% if _active %} evergreen-main-nav-active{% endif %}{% if linklists.main-menu-sidebar.links.size > 0 %} evergreen-main-nav-item-has-children{% endif %}">
+
+             <a class="evergreen-menu-link" href="{{ link.url }}">{{ link.title }}</a>
+             
+              {% if linklists.main-sidebar.links.size > 0 %}
+              <span class="evergreen-child-menu"></span>
+              {% endif %}
+
+              <div class="evergreen-nav-box">
+              {% if linklists.main-sidebar.links.size > 0 %}
+                <ul class="evergreen-main-subnav">
+                  {% for child_link in link.links %}
+                  <li class="evergreen-nav__item"><a href="{{ child_link.url }}" class="evergreen-nav__link">{{ child_link.title }}</a></li>
+                  {% endfor %}                
+                </ul>
+                {% endif %}
+             </div>
+            </li>
+          {% endfor %}
+
+`,
+  });
+
+Vue.component('sidebar', {
+  template: '#sidebar',
+  methods: {
+    closeSidebarPanel: mutations.toggleNav
+  },
+  computed: {
+    isPanelOpen() {
+      return store.isNavOpen
+    }
+  }
+});
+
+Vue.component('burger', {
+  template: '#burger',
+  
+  computed: {
+    isBurgerActive() {
+      return store.isNavOpen
+    }
+  },
+  methods: {
+    toggle() {
+      mutations.toggleNav()
+    }
+  }
+});
+
+  
+//apps
+new Vue({
+  el: '#sidebar-panel',
+  data: {
+  	message: 'SHOP'
+  },
+  delimiters: ['${', '}'],
+})
+
+  
+function showMenu() {
+  let showHide = document.getElementById("show-sub-nav");
+  if (showHide.style.display === "none") {
+    showHide.style.display = "block";
+  } else {
+    showHide.style.display = "none";
+  }
+}
+</script>

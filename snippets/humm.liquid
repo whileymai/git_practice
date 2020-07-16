@@ -1,0 +1,51 @@
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+ -->
+<div class="afterpay-label" id="afterpay1" v-show="showAfterpay" v-bind:class="{'afterpay-label': afterpayPayment1}">
+     ${ afterpayPayment1 }
+</div>
+
+<script> 
+  const Humm = new Vue({
+    el: '#afterpay1',
+    data: {
+      afterpayMessage: 'Or 4 payments of',
+      withHumm: 'with Humm',
+      showAfterpay: true,
+    },
+    
+  	delimiters: ['${', '}'],
+    
+    computed: {
+      afterpayPayment1() {
+        const productPrice = {{ product.price | json }};
+        const hummWidget = document.createElement("script");
+        humm.setAttribute(
+          "src",
+          "//widgets.shophumm.com.au/content/scripts/price-info.js"
+        );
+        humm.async = true;
+        document.head.appendChild(humm);
+         return hummWidget  + ' $' + ((productPrice / 5) / 100 ).toFixed(2) + ' ' + this.Humm;
+        }
+      },
+    mounted() {
+      const humm = document.createElement("script");
+        humm.setAttribute(
+          "src",
+          "//widgets.shophumm.com.au/content/scripts/price-info.js"
+        );
+        humm.async = true;
+        document.head.appendChild(humm);
+  	}
+  });
+</script>
+
+<style>
+  .afterpay-label {
+    background-color: transparent;
+    color: #000;
+    font-size: 14px;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
+</style>

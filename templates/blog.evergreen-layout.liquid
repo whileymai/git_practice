@@ -1,0 +1,53 @@
+<div class="container">
+  {%- if blog.articles.size > 0 -%}
+    <div class="blog__posts">
+    	{%- for article in blog.articles -%}
+      <!-- first blog -->
+      <div class="blog__post reveal" style="visibility: visible;">
+        <div class="blog-thumb__image-container">
+          <a class="" href="{{article.url}}">
+			<img class="blog-thumb__image lazy ls-is-cached lazyloaded" src="{{article.image.src | img_url: 'original'}}">
+          </a>
+        </div>
+        
+          <div class="blog-thumb__box">
+<!--             {%- if article.tags.size > 0 -%}
+            <div class="blog-thumb__tag">
+            {%- for tag in article.tags limit:2 -%}
+            {{tag | link_to_add_tag: tag}}
+            {%- endfor -%}
+            </div>
+            {%- endif -%}        -->
+            
+              <div class="date-published">
+                <span><span class="author">{{ article.author }}</span>{{- "blogs.general.on" | t -}}{{ article.published_at | date: "%b %d, %y" }}</span>
+              </div>
+            
+          <h2 class="blog-thumb__title"><a href="{{article.url}}">{{article.title}}</a></h2>
+            
+          <div class="blog-thumb__arrow">
+            <a class="" href="{{article.url}}">
+            <!--?xml version="1.0" encoding="UTF-8"?-->
+            <svg height="12px" version="1.1" viewbox="0 0 30 12" width="30px" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd" id="Symbols" stroke="none" stroke-linecap="square" stroke-width="1">
+              <g id="Link/text/black" stroke="#221E20" transform="translate(-113.000000, -7.000000)">
+                <g id="Group">
+                  <g id="Arrow-–-Right" transform="translate(114.000000, 8.000000)">
+                    <g id="Group-3-Copy">
+                      <path d="M0.349609375,5 L28.482892,5" id="Line-4"></path>
+                      <path d="M28.8257576,5 L23.9345396,0.16011419" id="Line-5"></path>
+                      <path d="M28.8257576,5 L23.9345396,9.83988581" id="Line-6"></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+
+  </div>

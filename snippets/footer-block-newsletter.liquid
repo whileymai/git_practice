@@ -1,0 +1,39 @@
+<div class="newsletter newsletter-footer-{{block.settings.type}}" {{ block.shopify_attributes }}>
+  {%- if block.settings.footer_newsletter_heading != '' -%}
+  <h4 class="title">{{block.settings.footer_newsletter_heading}}</h4>
+  <div class="strip-line"></div>
+  {%- endif -%}
+  <div class="clearfix default-newsletter">
+    {%- if block.settings.footer_newsletter_caption != '' -%}<p>{{block.settings.footer_newsletter_caption}}</p>{%- endif -%}
+    {%- if settings.popup_mailchimp_action != '' -%}
+    <form action="{{settings.popup_mailchimp_action}}" method="post" class="mailing-form" name="mc-embedded-subscribe-form" target="_blank">
+      <div class="col-md-12 col-sm-12 group-input px-0">      
+        <input placeholder="{{'general.footer.mailchimp.email_address' | t}}" type="email" class="evergreen-email-input" required="required" name="EMAIL" class="email" />
+        <button type="submit" class="footer-button subscribe">{{'general.footer.mailchimp.subscribe_button' | t}}</button>
+      </div>
+    </form>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+.default-newsletter .footer-button {
+  border: 1px solid #2B2D2F;
+  font-size: 13px;
+  margin-left: -4px;
+}
+  
+@media (max-width: 767px) {
+  .footer .pattern .default-newsletter form input.evergreen-email-input {
+      max-width: calc(65% - 0px)
+  }
+}
+  
+@media screen and (min-device-width: 768px) and (max-device-width: 1270px) { 
+  .footer .pattern .default-newsletter form input.evergreen-email-input {
+      max-width: calc(55% - 0px)
+  }
+}
+  
+  
+</style>

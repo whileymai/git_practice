@@ -1,0 +1,127 @@
+<div data-placement_fullwidth="1" id="custom-widget-{{section.id}}" class="custom-widget-wrapper" data-section-id="{{section.id}}" data-section-type="custom-widget">
+	<div class="evergreen-widget evergreen-icons"{{ block.shopify_attributes }}>
+    	<div class="heading text-center"><span>Why shop with us?</span></div>
+        	<div class="col-md-12 col-lg-12">
+				<div class="row product-grid-image">
+    				<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 text-center"> <img src="https://cdn.shopify.com/s/files/1/0314/7297/6008/files/quality.png?v=1584405548"  alt="trusted">
+            			<p class="icon-title">Tried &amp; Tested</p> <span>We take the utmost pride in providing products of high quality and great value. Always.</span> 
+        			</div>
+        			<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 text-center"> <img src="https://cdn.shopify.com/s/files/1/0314/7297/6008/files/leaf.png?v=1584405548" alt="leaf">
+           				<p class="icon-title">We're Fanatical</p> <span>We know a bit about plants so ask us for tips, tricks or any general botanical advice if you’re needing guidance.</span> 
+        			</div>
+        			<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 text-center"> <img src="https://cdn.shopify.com/s/files/1/0314/7297/6008/files/truck.png?v=1584405548" alt="Support">
+             			<p class="icon-title">Speedy Delivery</p> <span>We ship your orders quickly! In most cases within 24 hours and you are notified every step of the way.</span> 
+        			</div>
+            		<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 text-center"> <img src="https://cdn.shopify.com/s/files/1/0314/7297/6008/files/send.png?v=1584405548" alt="Support">
+             			<p class="icon-title">Drop us a line</p> <span>Have a question? No worries. We’re here to help so don’t hesitate to touch base. It’s our job, after all.</span> 
+        			</div>
+    			</div>
+     		</div>
+	</div>
+</div>
+
+
+<style>
+  
+.evergreen-icons {
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    padding: 50px 0 30px;
+    background-color: #fff;
+  	margin: 5px 0;
+}
+  
+.product-grid-image img {
+    max-height:40px;
+    height:40px;
+    width:40px;
+    margin: 0 auto;
+}
+
+.evergreen-icons .heading {
+    font-size: 18px;
+	font-weight: 500;
+    line-height: 1.3;
+    font-weight: 400;
+    padding-bottom: 50px;
+  	font-family: "Playfair Display", sans-serif;
+}
+
+.evergreen-icons .row {
+	padding-bottom: 0px;
+    margin: 0 auto;
+  	width: 85%;
+}
+
+.evergreen-icons .row>div {
+    padding: 10px 20px;
+  	margin-bottom: 10px;
+}
+
+.evergreen-icons .row img {
+    display: block;
+    margin: 0 auto
+}
+
+.evergreen-icons .row p {
+    font-size: 15px;
+    line-height: 23px;
+    padding: 15px 0 10px;
+    margin: 0;
+    font-weight: 400;
+    font-family: "Playfair Display", sans-serif;
+}
+
+.evergreen-icons .row span {
+    font-size: 15px;
+    line-height: 23px;
+    font-weight: 400
+}
+  
+</style>
+
+
+{% schema %}
+  {
+    "name": "Home Icons",
+	"class": "index-section section-wrapper",
+	"max_blocks": 4,
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "placement_fullwidth",
+        "label": "Force Full Width"
+      }
+	],
+	"blocks": [
+      {
+		"type": "custom_html",
+        "name": "Custom HTML",
+        "settings": [
+          {
+			"type": "textarea",
+            "id": "html_content",
+            "label": "HTML Content"
+  		  }
+		]	
+      }
+	],
+    "presets": [
+      {
+        "name": "Home Icons",
+        "category": "Content",
+        "settings": {
+		  "placement_fullwidth": true
+  		},
+        "blocks": [
+          {
+            "type": "custom_html",
+			"settings": {
+			"html_content": ""
+			}
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

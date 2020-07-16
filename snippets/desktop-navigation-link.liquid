@@ -1,0 +1,27 @@
+
+{% assign submenu = link.title | handleize %}
+{% assign _active = false %}
+{% if link.active %}
+{% assign _active = true %}
+{% endif %}
+
+  <li class="evergreen-main-nav-item{% if _active %} evergreen-main-nav-active{% endif %}{% if linklists[submenu].links.size > 0 %} evergreen-main-nav-item-has-children{% endif %}">
+
+    <a class="evergreen-menu-link" href="{{ link.url }}">{{ link.title }}</a>
+
+    {% if linklists[submenu].links.size > 0 %}
+    <span class="evergreen-child-menu"></span>
+    {% endif %}
+
+    {% if linklists[submenu].links.size > 0 %}
+    <div class="evergreen-nav-box">
+      <ul class="evergreen-main-subnav">
+        {% for link in linklists[submenu].links %}
+        <li class="evergreen-nav__item"><a href="{{ link.url }}" class="evergreen-nav__link">{{ link.title }}</a></li>
+        {% endfor %}                
+      </ul>
+    </div>
+    {% endif %}
+
+  </li>
+

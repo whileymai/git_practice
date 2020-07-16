@@ -1,0 +1,13 @@
+<div class="product-instagram">
+  <div 
+       data-uid="{{instructions.instagram_username}}" 
+       data-limit="{{instructions.instagram_limit}}"
+       id="instagram_product" 
+       class="product-instafeed list-inline">
+  </div>
+  {%- if instructions.instagram_btn != blank and instructions.instagram_username != blank -%}
+  <a target="_blank" class="btn" href="https://instagram.com/{{- instructions.instagram_username -}}">
+    {{- instructions.instagram_btn -}}
+  </a>
+  {%- endif -%}
+</div>

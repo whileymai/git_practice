@@ -1,0 +1,191 @@
+<!-- Alert Message -->
+<div id="alertMessage">
+  <message title="Hello World" body="content to go here"></message>
+</div>
+<!-- End Alert Message -->
+
+<div id="test">  
+  {% if customer %} 
+  ${ reversedMessage } {{ customer.first_name }}
+  {% endif %}
+  
+  <!-- Task list  -->
+  <ul>
+    <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+  </ul>
+  
+  <ul>
+    <li v-for="task in incompleteTasks" v-text="task.description"></li>
+  </ul>
+   <!-- End Task list  -->
+  
+</div>
+
+<div id="list">
+  <task>Hello</task>
+  <task>Goodbye</task>
+</div>
+
+<div id="task-list">
+  <task-list></task-list>
+</div>
+
+<!-- Test 1 Vue -->
+<div id="app">
+  <input type="text" v-on:input="changeTitle">
+  <h1>${ title }</h1>
+  <p>${ sayHello() } - <a v-bind:href="link">Google</a></p>
+  <hr>
+  <p v-html="finishedLink"></p>
+</div>
+<!-- End Test 1 Vue -->
+
+<!-- Test 2 Vue -->
+<div id="app2">
+  <button v-on:click="increase(29.95, $event)">Click me</button>
+  <p>${ counter }</p>
+  <p>${ counter * 2 } </p>
+  <p v-on:mousemove="updateCoordinates">
+    Coordinates: ${ x } / ${ y }
+    - <span v-on:mousemove.stop="">DEAD SPOT</span>
+  </p>
+  <input type="text" v-on:keyup.enter.space="alertMe">
+</div>
+<!-- End Test 2 Vue -->
+
+<!-- Test 3 Vue -->
+
+<div id="app3" v-model="name">
+ <input type="text">
+  <p>${ name }</p>
+</div>
+
+<!-- End Test 3 Vue -->
+
+<!-- Start Test 4 Vue -->
+<div id="app4">
+  <button v-on:click="counter++" class="one button btn-default button-product-info-1">Increase</button>
+  <button v-on:click="counter--" class="one button btn-default button-product-info-1">Decrease</button>
+  <button v-on:click="secondCounter++" class="one button btn-default button-product-info-1">Increase Second</button>
+  <p>Counter: ${ counter } | ${ secondCounter }</p>
+  <p>Result: ${ result() } | ${ output }</p>
+</div>
+<!-- End Test 4 Vue -->
+
+<!-- Start Test 5 Vue -->
+
+<div id="app5">
+  <button v-on:click="changeLink">Click to change link</button>
+  <a v-bind:href="link">Link</a>
+</div>
+
+<!-- End Test 5 Vue -->
+
+<!-- Start Test 6 Vue -->
+<div id="app6">
+  <div class="demo" v-on:click="attachRed = !attachRed" v-bind:class="divClasses"></div>
+  <div class="demo" v-bind:class="{red: attachRed}"></div>
+  <div class="demo" v-bind:class="color"></div>
+  <hr>
+  <input type="text" v-model="color">
+</div>
+<!-- End Test 6 Vue -->
+
+<!-- Start test app 7 -->
+<div id="app7">
+  <p v-if="show">You can see me!</p>
+  <p v-else>Now you see me!</p>
+  <template v-if="show">
+    <h1>Heading</h1>
+    <p>Inside a template</p>
+  </template>
+  <p v-show="show">Do you also see me!</p>
+  <button v-on:click="show = !show" class="one button btn-default button-product-info-1">Switch</button>
+</div>
+
+<!-- End test app 7 -->
+
+<!-- start test app 8 -->
+<div id="app8">
+  <ul>
+    <li v-for="(list, i) in ingredients">${ list } (${ i })</li>
+  </ul>
+  <button v-on:click="ingredients.push('spices')">Add new</button>
+  <hr>
+  
+  <ul>
+    <li v-for="person in persons">${ person.name }</li>
+  </ul>
+  <hr>
+  <template v-for="(list, index) in ingredients">
+    <h1>${ list }</h1>
+    <p>${ index }</p>
+  </template>
+</div>
+<!-- end test app 8 -->
+
+
+<!-- start test app 9 -->
+
+<div id="app9">
+  <h1 ref="heading">${ title }</h1>
+  <button v-on:click="show" ref="myButton">Change something in Vue 1</button>
+  <hello></hello>
+</div>
+<!-- end test app 9 -->
+
+<!-- start test app 10 -->
+
+<div id="app10">
+  <h1>${ title }</h1>
+  <button v-on:click="onChange">Change something in Vue 1</button>
+</div>
+
+<!-- end test app 10 -->
+
+<!-- start test app 11 -->
+<div id="app11">
+
+</div>
+<!-- end test app 11 -->
+
+<!-- start test app 12 -->
+<div id="app12">
+  <button v-on:click="title = 'changed'">Update Title</button>
+  <button v-on:click="destroy">Destroy</button>
+</div>
+<!-- end test app 12 -->
+
+<div id="app13">
+  <ben-comp></ben-comp>
+  <ben-comp></ben-comp>
+</div>
+
+<div id="app14">
+  <ben-comp></ben-comp>
+  <ben-comp></ben-comp>
+</div>
+
+<style>
+  .demo {
+  	width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: inline-block;
+    margin:10px;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  .blue {
+    background-color: blue;
+  }
+  
+</style>
+

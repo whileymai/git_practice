@@ -1,0 +1,25 @@
+<div id="content" class="col-md-12 center-column content-with-background">
+  <div class="row">
+    <div class="col-sm-12">
+     	<div class="about-intro text-center">
+            {{page.content}}
+      </div>
+      <div class="about-area">
+        <div class="about-section">
+          {%- section "about-banner" -%}
+          {%- section "about-section" -%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-intro {
+    padding: 5px 20px;
+    width: 75%;
+    margin: 0 auto;
+  }
+  
+</style>

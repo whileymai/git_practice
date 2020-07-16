@@ -1,0 +1,376 @@
+<!-- Evergreen Home Page Layout -->
+  
+  <div class="container-fluid evergreen-container" id="{{section.id}}">   
+    <div class="section evergreen-section">
+      <h2 class="h1 featured-products__title"></h2>
+      <div class="blog-posts__element-container element-container" style="width: 350px; top: 35%; left: 54%;"></div>
+      
+      	  {% for block in section.blocks %}
+          <div class="evergreen-module reveal" style="visibility: visible;">
+            {% if block.settings.evergreen_img_1 != blank %}
+
+            <div class="evergreen-thumb">
+              
+              <a href="{{ block.settings.evergreen_url_1 }}"><div class="blog-thumb__image-container"><img class="blog-thumb__image lazy ls-is-cached lazyloaded" src="{{ block.settings.evergreen_img_1 | img_url:'master' }}"></div></a>
+                    <div class="evergreen__box">
+                    <h2 class="evergreen__title">{{ block.settings.evergreen_title }}</h2>
+                    <div class="evergreen__tag">
+                        {{ block.settings.evergreen_content }}
+                    </div>
+              <a href="{{ block.settings.evergreen_url_1 }}">
+              <div class="evergreen__arrow">
+                <!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg height="12px" version="1.1" viewbox="0 0 30 12" width="30px" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" fill-rule="evenodd" id="Symbols" stroke="none" stroke-linecap="square" stroke-width="1">
+                  <g id="Link/text/black" stroke="#221E20" transform="translate(-113.000000, -7.000000)">
+                    <g id="Group">
+                      <g id="Arrow-–-Right" transform="translate(114.000000, 8.000000)">
+                        <g id="Group-3-Copy">
+                          <path d="M0.349609375,5 L28.482892,5" id="Line-4"></path>
+                          <path d="M28.8257576,5 L23.9345396,0.16011419" id="Line-5"></path>
+                          <path d="M28.8257576,5 L23.9345396,9.83988581" id="Line-6"></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g></svg>
+              </div>
+             </a>
+            </div>
+        </div>
+       {% endif %}
+      </div>
+      {% endfor %}
+      
+      
+    </div>
+  </div>
+<!-- End Evergreen Home Page Layout -->
+
+{% schema %}
+  {
+    "name": "Home Icons",
+	"class": "section-wrapper",
+	"max_blocks": 3,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings",
+        "info": "Top left image must be 810px wide by 725px tall!   Middle right image must be 850px pixels wide and 995px tall!    Bottom left image must be 1025px wide and 645px tall."
+      }
+	],
+ "blocks": [
+      {
+      	"type": "image",
+      	"name": "Banners",	
+ 	  	"settings": [
+	  {
+		"type" :"header",
+		"content":"Image 1"
+	  },
+      {
+      	"type": "image_picker",
+      	"id": "evergreen_img_1",
+      	"label": "Image",
+	  	"info": "Upload an image to be added to the section"
+      },
+      {
+      	"type": "text",
+      	"id": "evergreen_title",
+      	"label": "Title",
+      	"default": "title"
+      },
+      {
+      	"type": "textarea",
+      	"id": "evergreen_content",
+      	"label": "Content",
+      	"default": "content"
+      },
+      {
+      	"type": "url",
+      	"id": "evergreen_url_1",
+      	"label": "URL"
+      }
+  	]
+  }
+],
+
+    "presets": [
+      {
+        "name": "Home Grid section",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+
+.evergreen-container {
+  margin-bottom: 50px !important;
+}
+
+.evergreen-section {
+  position: relative;
+  margin-bottom: 100px !important;
+}
+
+@media (max-width: 768px) {
+  .evergreen-module {
+    margin-bottom: 40px;
+  }
+}
+.evergreen-module .evergreen-thumb {
+  margin-right: 0%;
+}
+.evergreen-module:nth-child(3) {
+  margin-top: 80px;
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(3) {
+    margin-top: 0;
+  }
+}
+.evergreen-module:nth-child(3) .evergreen-thumb {
+  width: 40%;
+  margin-left: 12%;
+}
+@media (max-width: 1024px) {
+  .evergreen-module:nth-child(3) .evergreen-thumb {
+    width: 66.7%;
+  }
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(3) .evergreen-thumb {
+    width: 100%;
+  }
+}
+.evergreen-module:nth-child(4) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: -20%;
+  margin-right: 10%;
+}
+@media (max-width: 1024px) {
+  .evergreen-module:nth-child(4) {
+    margin-top: -3%;
+  }
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(4) {
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
+.evergreen-module:nth-child(4) .evergreen-thumb {
+  width: 35%;
+}
+@media (max-width: 1024px) {
+  .evergreen-module:nth-child(4) .evergreen-thumb {
+    width: 55%;
+  }
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(4) .evergreen-thumb {
+    width: 100%;
+  }
+}
+.evergreen-module:nth-child(5) {
+  margin-top: -20%;
+  margin-left: 0%;
+}
+@media (max-width: 1440px) {
+  .evergreen-module:nth-child(5) {
+    margin-left: 0%;
+  }
+}
+@media (max-width: 1024px) {
+  .evergreen-module:nth-child(5) {
+    margin-top: -3%;
+  }
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(5) {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+.evergreen-module:nth-child(5) .evergreen-thumb,
+.evergreen-module:nth-child(5) .product {
+  width: 40%;
+  margin-left: 6%;
+
+}
+@media (max-width: 1440px) {
+  .evergreen-module:nth-child(5) .evergreen-thumb,
+  .evergreen-module:nth-child(5) .product {
+    width: 40%;
+  }
+}
+@media (max-width: 1024px) {
+  .evergreen-module:nth-child(5) .evergreen-thumb,
+  .evergreen-module:nth-child(5) .product {
+    width: 66.7%;
+  }
+}
+@media (max-width: 768px) {
+  .evergreen-module:nth-child(5) .evergreen-thumb,
+  .evergreen-module:nth-child(5) .product {
+    width: 100%;
+  }
+}
+.blog-posts__element-container {
+  position: absolute;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .blog-posts__element-container {
+    display: none;
+  }
+}
+.blog-posts__element {
+  width: 100%;
+}
+
+.evergreen-thumb {
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-decoration: none;
+}
+.evergreen-thumb:hover .blog-thumb__image {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.evergreen-thumb:hover .evergreen__arrow {
+  -webkit-transform: translateX(18px);
+  transform: translateX(18px);
+}
+.blog-thumb__image-container {
+  overflow: hidden;
+  width: 100%;
+}
+.blog-thumb__image {
+  width: 100%;
+  display: block;
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+}
+.evergreen__arrow {
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+.evergreen__box {
+  background-color: #f4f4f4;
+  padding: 15px 20px;
+  width: 75%;
+  margin-top: -5%;
+  position: relative;
+}
+.evergreen__tag {
+  text-transform: none;
+  margin-bottom:20px;
+}
+.blog-thumb__summary {
+  margin: 14px 0 26px;
+  font-size: 18px;
+}
+.blog-thumb__summary p,
+.blog-thumb__summary span {
+  font-size: 18px;
+} 
+  
+@media (max-width: 768px) {
+.evergreen-module .evergreen-thumb {
+    margin-left: 0%;
+    margin-right: 0%;  
+	}
+  
+.evergreen__box {
+    background-color: #f4f4f4;
+    padding: 15px 20px;
+    width: 90%;
+    margin-top: -20%;
+    position: relative;
+	}
+  
+  .evergreen-module:nth-child(5) .evergreen-thumb, .evergreen-module:nth-child(5) .product {
+    margin-left: 0%;
+	}
+  
+  .evergreen-module:nth-child(3) .evergreen-thumb {
+    margin-left: 0%;
+  }
+  
+  .fade-in {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.fade-in.lazyloaded {
+  opacity: 1;
+}
+
+@-webkit-keyframes lazyLoader {
+  0%,
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  50% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes lazyLoader {
+  0%,
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  50% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+.lazyloading + .image-loader {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+.lazyloading + .image-loader:after {
+  -webkit-animation: lazyLoader 3s infinite;
+  animation: lazyLoader 3s infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.43, 0.43, 0.25, 0.99);
+  animation-timing-function: cubic-bezier(0.43, 0.43, 0.25, 0.99);
+}
+  
+</style>

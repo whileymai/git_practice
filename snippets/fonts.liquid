@@ -1,0 +1,8 @@
+
+{%- assign GENERAL_FONT = settings.general_font | default:'Playfair Display' -%}
+{%- assign HEADING_FONT = settings.heading_font | default:'brandon_grotesquelight' -%}
+{%- assign SPECIAL_FONT = settings.special_font | default:'brandon_grotesquelight' -%}
+
+{%- if HEADING_FONT != GENERAL_FONT -%}
+<link href="//fonts.googleapis.com/css?family={{HEADING_FONT | replace: ' ', '+'}}:300italic,400italic,500italic,600italic,700italic,800italic,100,200,300,400,500,600,700,800&subset=cyrillic-ext,greek-ext,latin,latin-ext,cyrillic,greek,vietnamese" rel='stylesheet' type='text/css' />
+{%- endif -%}

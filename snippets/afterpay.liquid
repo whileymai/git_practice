@@ -1,0 +1,34 @@
+<div class="humm-label" id="humm" v-show="showHumm"></div>
+
+<script> 
+  new Vue({
+    el: '#humm',
+    data: {
+      showHumm: true,
+    },
+    
+  	delimiters: ['${', '}'],
+    
+    computed: {
+
+      },
+    
+      mounted() {
+        const myHumm = document.createElement('script');
+        myHumm.setAttribute('src', 'https://widgets.shophumm.com.au/content/scripts/price-info.js?productPrice={{product.selected_or_first_available_variant.price | divided_by: 100.00}}');
+
+        const addHumm = document.getElementById('humm');
+        addHumm.appendChild(myHumm);
+      }
+  });
+</script>
+
+<style>
+  .humm-label {
+    background-color: transparent;
+    color: #000;
+    font-size: 14px;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
+</style>
