@@ -1188,7 +1188,7 @@ h3.col-head {
 
 .product-grid .product .name {
 	display:inline;
-  	font-size: 14px !important;
+  	font-size: 13px !important;
 }
 
 @media (min-width: 768px) {
@@ -1208,4 +1208,20 @@ h3.col-head {
   
 .product-grid .product .name {
 	float: left;
+}
+
+.product-grid .product .name {
+    white-space: pre-wrap !important;
+}
+
+@media (max-width: 768px) {
+.product-grid .product .price {
+    margin-bottom: 0px;
+    text-align-last: left;
+    padding-top: 10px;
+	}
+}
+
+.product-grid .product.product-item-advanced-wrapper {
+    overflow: visible !important;
 }
