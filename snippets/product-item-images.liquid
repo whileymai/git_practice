@@ -77,10 +77,11 @@
       -{{current_variant.compare_at_price | minus:current_variant.price | times:100.0 | divided_by:current_variant.compare_at_price | ceil }}%
       {%- endif -%}
     </div>
-        {%- elsif current_variant.inventory_quantity == 0 and current_variant.inventory_management == "shopify"  -%}
-        <div class="new">{{'products.product.sold_out' | t | escape}}</div>
-        {%- endif -%}
-    
+    {%- elsif settings.product_new_badge and product.tags contains 'new' -%}
+    <div class="new">{{'products.product.new' | t}}</div>
+    {%- elsif current_variant.inventory_quantity == 0 and current_variant.inventory_management == "shopify"  -%}
+    <div class="new">{{'products.product.sold_out' | t | escape}}</div>
+    {%- endif -%}
     
     {%- assign _dim = product-item -%}
     {%- if _dim == empty or _dim == blank -%}
