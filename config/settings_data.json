@@ -3607,9 +3607,9 @@
         "settings": {
           "copyright_align": "left",
           "copyright_custom": "Copyright © Evergreen Collective",
-          "footer_social_hook": "center",
-          "footer_social_heading": "Follow Us",
-          "footer_social_size": "26",
+          "footer_social_hook": "cp_right",
+          "footer_social_heading": "",
+          "footer_social_size": "18",
           "payment_image": ""
         }
       },
