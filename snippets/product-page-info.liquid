@@ -37,8 +37,8 @@
 
     {%- include "afterpay" -%}
     
- {%- if product.available -%}<script src="https://widgets.shophumm.com.au/content/scripts/price-info.js?productPrice={{product.selected_or_first_available_variant.price | divided_by: 100.00}}"></script>{% endif %}
-
+<!--  	{%- if product.available -%}<script src="https://widgets.shophumm.com.au/content/scripts/price-info.js?productPrice={{product.selected_or_first_available_variant.price | divided_by: 100.00}}"></script>{% endif %}
+ -->
     {%- comment -%} PRICE {%- endcomment -%}
     {%- if settings.price_range and product.price_varies -%}
       <div class="price-range price">

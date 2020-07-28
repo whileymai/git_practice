@@ -18,6 +18,8 @@
 {%-endif-%}
 <div class="{%if custom_class != blank%} {{custom_class}} {%endif%} product product-content-wrapper clearfix product-hover product-item-{{- settings.product_item_type -}}-wrapper quickshop-type-{{- settings.quickshop_type -}}-wrapper {{settings.product_item_advanced_thumb_type}}" data-_dim="_{{_dim}}">
   <div class="left">
+    
+    
     {%- if settings.product_sale_badge != '' and current_variant.compare_at_price > current_variant.price -%}
     <div class="sale {% if settings.product_sale_badge != '0' %}percentage{% endif %}{% unless current_variant.compare_at_price > current_variant.price %} hide{% endunless %}">
       {%- if settings.product_sale_badge == '0' -%}
@@ -26,9 +28,14 @@
       -{{current_variant.compare_at_price | minus:current_variant.price | times:100.0 | divided_by:current_variant.compare_at_price | ceil }}%
       {%- endif -%}
     </div>
-    {%- elsif settings.product_new_badge and product.tags contains 'new' -%}
-    <div class="new">{{'products.product.new' | t}}</div>
+    {%- elsif current_variant.inventory_quantity == 0 and current_variant.inventory_management == "shopify"  -%}
+    <div class="new">{{'products.product.sold_out' | t | escape}}</div>
     {%- endif -%}
+    
+    
+    
+    
+    
     {%- include 'product-item-images', my_layout: 'grid' -%}
     {%- if settings.quickshop_image > 0 and product.images.size > 1 -%}{%- include 'item-images' with settings.quickshop_image | minus: 1 -%}{%- endif -%}
     {% if settings.product_item_advanced_thumb_type != "dots" %}
